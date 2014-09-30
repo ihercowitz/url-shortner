@@ -6,8 +6,8 @@ This project shows how to do this in a very simple way using Clojure. So all the
 ## Usage
 
 - lein repl
-- (url-short <your-url>) <-- this will create a random entry on the url atom and associate this with the desire url
-- (url-unshort <short-value>)  <-- this will reveal the shorted link
+- (url-short *your-url*) <-- this will create a random entry on the url atom and associate this with the desire url
+- (url-unshort *short-value*)  <-- this will reveal the shorted link
 
 ## License
 Copyright © 2014
