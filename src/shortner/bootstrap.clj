@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.handler :as handler]
             [ring.adapter.jetty :as jetty]
+            [ring.util.codec :refer [url-encode url-decode]]
             [shortner.core :as shortner]))
 
 (defn format-url [short-url]
@@ -15,10 +16,13 @@
 
 (defroutes shortner-routes
   (GET "/" [] "Hello world")
-  (GET "/s" [url] (->> (shortner/url-short url)
-                                       (str "http://clshortme.herokuapp.com/")
-                                       format-url))
+  (GET "/s" {params :params headers :headers} (->> (:url params)
+                                                   url-encode
+                                                   shortner/url-short
+                                                   (str "http://" (get headers "host") "/")
+                                                   format-url))
   (GET "/:short" [short] (->> (shortner/url-unshort short)
+                              url-decode
                               redirect)))
 
 
