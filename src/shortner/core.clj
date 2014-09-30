@@ -19,6 +19,8 @@
       (recur (generate-short) url))))
 
 (defn url-unshort [short]
+  (println short)
+  (println @urls)
   (if-let [url ((keyword short) @urls)]
     url
     (println "URL not found")))
