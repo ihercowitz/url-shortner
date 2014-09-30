@@ -16,7 +16,7 @@
 (defroutes shortner-routes
   (GET "/" [] "Hello world")
   (GET "/s" [url] (->> (shortner/url-short url)
-                                       (str "http://localhost:8000/")
+                                       (str "http://clshortme.herokuapp.com/")
                                        format-url))
   (GET "/:short" [short] (->> (shortner/url-unshort short)
                               redirect)))
